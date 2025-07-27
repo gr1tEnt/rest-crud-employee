@@ -23,4 +23,9 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
         TypedQuery<Employee> query = entityManager.createQuery("FROM Employee", Employee.class);
         return query.getResultList();
     }
+
+    @Override
+    public Employee findById(int id) {
+        return entityManager.find(Employee.class, id);
+    }
 }
