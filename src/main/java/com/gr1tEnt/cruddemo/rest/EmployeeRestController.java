@@ -1,8 +1,12 @@
 package com.gr1tEnt.cruddemo.rest;
 
 import com.gr1tEnt.cruddemo.dao.EmployeeDAO;
+import com.gr1tEnt.cruddemo.entity.Employee;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -12,5 +16,10 @@ public class EmployeeRestController {
 
     public EmployeeRestController(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
+    }
+
+    @GetMapping("/employees")
+    public List<Employee> findAll() {
+        return employeeDAO.findAll();
     }
 }
