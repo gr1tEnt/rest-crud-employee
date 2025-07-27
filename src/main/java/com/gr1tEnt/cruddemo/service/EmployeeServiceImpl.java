@@ -2,6 +2,7 @@ package com.gr1tEnt.cruddemo.service;
 
 import com.gr1tEnt.cruddemo.dao.EmployeeDAO;
 import com.gr1tEnt.cruddemo.entity.Employee;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findAll() {
         return employeeDAO.findAll();
+    }
+
+    @Override
+    public Employee findById(int id) {
+        return employeeDAO.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public Employee save(Employee employee) {
+        return employeeDAO.save(employee);
+    }
+
+    @Transactional
+    @Override
+    public void deleteById(int id) {
+        employeeDAO.deleteById(id);
     }
 }
