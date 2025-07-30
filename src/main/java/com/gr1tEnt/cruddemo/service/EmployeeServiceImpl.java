@@ -26,6 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findById(int id) {
         Optional<Employee> result = employeeRepository.findById(id);
+        // There shouldn't be null ((
         return result.orElse(null);
     }
 
