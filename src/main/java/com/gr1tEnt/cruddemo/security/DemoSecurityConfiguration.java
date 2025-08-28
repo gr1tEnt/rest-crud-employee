@@ -17,7 +17,13 @@ public class DemoSecurityConfiguration {
     @Bean
     public UserDetailsManager detailsManager(DataSource dataSource) {
 
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager(dataSource);
+
+        detailsManager.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
+
+        detailsManager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+
+        return detailsManager;
     }
 
     @Bean
